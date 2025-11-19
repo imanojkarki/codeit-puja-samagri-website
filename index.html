@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puja Samagri - Worship Supplies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        /* Dark mode */
+        .dark-mode {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        .dark-mode .bg-white { background-color: #374151; }
+        .dark-mode .text-gray-800 { color: #f9fafb; }
+        .dark-mode .text-gray-600 { color: #d1d5db; }
+        .dark-mode .bg-gray-50 { background-color: #111827; }
+        .dark-mode .bg-gray-800 { background-color: #111827; }
+        
+        /* Backgrounds */
+        .dark-mode .bg-white { background-color: #374151 !important; }
+        .dark-mode .bg-gray-50 { background-color: #1f2937 !important; }
+        .dark-mode .bg-gray-100 { background-color: #4b5563 !important; }
+        .dark-mode header.bg-white { background-color: #374151 !important; }
+        .dark-mode .card-header { background-color: #4b5563 !important; }
+
+        /* Text colors */
+        .dark-mode .text-gray-700,
+        .dark-mode .text-gray-800,
+        .dark-mode .text-gray-600 {
+            color: #f9fafb !important;
+        }
+
+        .dark-mode a.text-gray-700:hover,
+        .dark-mode a.text-gray-600:hover {
+            color: #fbbf24 !important; /* Orange hover */
+        }
+
+        /* Icons */
+        .dark-mode i.text-gray-600 {
+            color: #e5e7eb !important;
+        }
+
+        /* Product cards */
+        .product-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+
+        .product-image { 
+            background: linear-gradient(45deg, #f59e0b, #dc2626); 
+            display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; 
+            color: white; font-weight: bold; text-align: center; 
+            height: 192px; 
+        }
+
+        /* Product Card Text */
+        .dark-mode .product-card h3,
+        .dark-mode .product-card p {
+            color: #f3f4f6 !important;
+        }
+
+        /* Language styles */
+        .english-text { display: block; }
+        .nepali-text { display: none; }
+        .language-nepali .english-text { display: none; }
+        .language-nepali .nepali-text { display: block; }
+
+        /* MacBook style card header */
+        .card-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.5rem 1rem; background-color: #f3f4f6;
+        }
+        .mac-buttons { display: flex; gap: 0.25rem; }
+        .mac-button {
+            width: 1.2rem; height: 1.2rem; border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.65rem;
+        }
+        .mac-close { background-color: #f87171; }
+        .mac-min { background-color: #fbbf24; }
+        .mac-max { background-color: #34d399; }
+
+        .card-title { font-weight: bold; text-align: center; flex:1; }
+
+        .product-image-text { line-height: 1.4; }
+
+        /* Footer */
+        .dark-mode footer {
+            background-color: #111827 !important;
+            color: #e5e7eb !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- Header -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <!-- Logo & Brand -->
+        <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                <i class="fas fa-om text-white text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold text-gray-800">Puja Samagri</h1>
+                <p class="text-xs text-gray-600">Divine Worship Supplies</p>
+            </div>
+        </div>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="text-gray-700 hover:text-orange-500 font-medium">Home</a>
+            <a href="#about" class="text-gray-700 hover:text-orange-500 font-medium">About</a>
+            <a href="#products" class="text-gray-700 hover:text-orange-500 font-medium">Products</a>
+            <a href="#services" class="text-gray-700 hover:text-orange-500 font-medium">Services</a>
+            <a href="#contact" class="text-gray-700 hover:text-orange-500 font-medium">Contact</a>
+        </nav>
+
+        <!-- Right Side Items -->
+        <div class="flex items-center space-x-4">
+            <a href="#" onclick="document.body.classList.toggle('dark-mode'); return false;" class="p-2 rounded-lg bg-gray-100">
+                <i class="fas fa-moon text-gray-600"></i>
+            </a>
+            <button id="languageToggle" class="px-3 py-1 rounded-lg bg-gray-100 text-sm font-medium hover:bg-gray-200 transition">EN</button>
+            <a href="#cart" class="relative p-2">
+                <i class="fas fa-shopping-cart text-gray-600"></i>
+                <span class="absolute -top-1 -right-1 bg-orange-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">0</span>
+            </a>
+            <a href="#login" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 font-medium">
+                <i class="fas fa-user mr-2"></i>
+                <span class="english-text">Login</span>
+                <span class="nepali-text">लगइन</span>
+            </a>
+            <a href="#mobile-menu" class="md:hidden p-2">
+                <i class="fas fa-bars text-gray-600"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="py-20 bg-gradient-to-r from-orange-400 to-red-500 text-white text-center">
+        <h2 class="text-4xl md:text-6xl font-bold mb-6 english-text">Divine Worship Supplies</h2>
+        <h2 class="text-4xl md:text-6xl font-bold mb-6 nepali-text">पूजा सामग्रीहरू</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto english-text">
+            Authentic puja items for your spiritual journey. From diyas to deities, we provide everything for your worship needs.
+        </p>
+        <p class="text-xl mb-8 max-w-2xl mx-auto nepali-text">
+            तपाईंको आध्यात्मिक यात्राका लागि प्रामाणिक पूजा सामग्रीहरू। दियो देखि देवताहरूसम्म, हामी तपाईंको पूजा आवश्यकताका लागि सबै कुरा प्रदान गर्दछौं।
+        </p>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="about" class="py-16 bg-white">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 english-text">Why Choose Puja Samagri?</h2>
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 nepali-text">किन पूजा सामग्री?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 container mx-auto">
+            <div class="text-center p-6">
+                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check-circle text-orange-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 english-text">Authentic Products</h3>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 nepali-text">प्रामाणिक सामाग्री</h3>
+                <p class="text-gray-600 english-text">All our puja items are sourced from trusted manufacturers and temples.</p>
+                <p class="text-gray-600 nepali-text">हाम्रा सबै पूजा सामग्रीहरू विश्वसनीय निर्माताहरू र मन्दिरहरूबाट प्राप्त गरिएको हो।</p>
+            </div>
+            <div class="text-center p-6">
+                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shipping-fast text-orange-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 english-text">Fast Delivery</h3>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 nepali-text">छिटो वितरण</h3>
+                <p class="text-gray-600 english-text">Quick and reliable delivery across Nepal with careful packaging.</p>
+                <p class="text-gray-600 nepali-text">सावधानीपूर्वक प्याकेजिङको साथ नेपालभर छिटो र विश्वसनीय वितरण।</p>
+            </div>
+            <div class="text-center p-6">
+                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-headset text-orange-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 english-text">Expert Guidance</h3>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 nepali-text">विशेषज्ञ सल्लाह</h3>
+                <p class="text-gray-600 english-text">Get advice on proper puja procedures and item usage.</p>
+                <p class="text-gray-600 nepali-text">उचित पूजा प्रक्रिया र सामग्री प्रयोगको लागि सल्लाह प्राप्त गर्नुहोस्।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products -->
+    <section id="products" class="py-16 bg-gray-50">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 english-text">Popular Puja Items</h2>
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 nepali-text">लोकप्रिय पूजा सामग्री</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 container mx-auto">
+            <!-- Product Card Template -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden product-card">
+                <div class="card-header">
+                    <div class="mac-buttons">
+                        <span class="mac-button mac-close"><i class="fas fa-times"></i></span>
+                        <span class="mac-button mac-min"><i class="fas fa-minus"></i></span>
+                        <span class="mac-button mac-max"><i class="fas fa-square"></i></span>
+                    </div>
+                    <div class="card-title english-text">Brass Diyas</div>
+                    <div class="card-title nepali-text">पित्तलको दियो</div>
+                </div>
+                <div class="product-image">
+                    <div class="product-image-text english-text">
+                        <div class="text-lg font-bold">Brass Diyas</div>
+                        <div class="text-sm">Set of 5</div>
+                    </div>
+                    <div class="product-image-text nepali-text">
+                        <div class="text-lg font-bold">पित्तलको दियो</div>
+                        <div class="text-sm">५ वटाको सेट</div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 english-text">Brass Diyas</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 nepali-text">पित्तलको दियो</h3>
+                    <p class="text-gray-600 text-sm mt-1 english-text">Set of 5 traditional oil lamps</p>
+                    <p class="text-gray-600 text-sm mt-1 nepali-text">५ वटा परम्परागत तेल बत्तीको सेट</p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="text-orange-500 font-bold text-lg">Rs. 450</span>
+                        <a href="#product1" class="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repeat similar cards for Incense Sticks, Rudraksha Mala, Puja Thali Set -->
+            <!-- Product 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden product-card">
+                <div class="card-header">
+                    <div class="mac-buttons">
+                        <span class="mac-button mac-close"><i class="fas fa-times"></i></span>
+                        <span class="mac-button mac-min"><i class="fas fa-minus"></i></span>
+                        <span class="mac-button mac-max"><i class="fas fa-square"></i></span>
+                    </div>
+                    <div class="card-title english-text">Incense Sticks</div>
+                    <div class="card-title nepali-text">धूपबत्ती</div>
+                </div>
+                <div class="product-image">
+                    <div class="product-image-text english-text">
+                        <div class="text-lg font-bold">Incense Sticks</div>
+                        <div class="text-sm">50 Pieces</div>
+                    </div>
+                    <div class="product-image-text nepali-text">
+                        <div class="text-lg font-bold">धूपबत्ती</div>
+                        <div class="text-sm">५० वटा</div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 english-text">Incense Sticks</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 nepali-text">धूपबत्ती</h3>
+                    <p class="text-gray-600 text-sm mt-1 english-text">Assorted fragrance pack of 50 sticks</p>
+                    <p class="text-gray-600 text-sm mt-1 nepali-text">५० वटा बत्तीको मिश्रित सुगन्ध प्याक</p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="text-orange-500 font-bold text-lg">Rs. 200</span>
+                        <a href="#product2" class="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden product-card">
+                <div class="card-header">
+                    <div class="mac-buttons">
+                        <span class="mac-button mac-close"><i class="fas fa-times"></i></span>
+                        <span class="mac-button mac-min"><i class="fas fa-minus"></i></span>
+                        <span class="mac-button mac-max"><i class="fas fa-square"></i></span>
+                    </div>
+                    <div class="card-title english-text">Rudraksha Mala</div>
+                    <div class="card-title nepali-text">रुद्राक्ष माला</div>
+                </div>
+                <div class="product-image">
+                    <div class="product-image-text english-text">
+                        <div class="text-lg font-bold">Rudraksha Mala</div>
+                        <div class="text-sm">108 Beads</div>
+                    </div>
+                    <div class="product-image-text nepali-text">
+                        <div class="text-lg font-bold">रुद्राक्ष माला</div>
+                        <div class="text-sm">१०८ मणिका</div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 english-text">Rudraksha Mala</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 nepali-text">रुद्राक्ष माला</h3>
+                    <p class="text-gray-600 text-sm mt-1 english-text">108 beads authentic rudraksha</p>
+                    <p class="text-gray-600 text-sm mt-1 nepali-text">१०८ वटा मणिका प्रामाणिक रुद्राक्ष</p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="text-orange-500 font-bold text-lg">Rs. 1,200</span>
+                        <a href="#product3" class="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden product-card">
+                <div class="card-header">
+                    <div class="mac-buttons">
+                        <span class="mac-button mac-close"><i class="fas fa-times"></i></span>
+                        <span class="mac-button mac-min"><i class="fas fa-minus"></i></span>
+                        <span class="mac-button mac-max"><i class="fas fa-square"></i></span>
+                    </div>
+                    <div class="card-title english-text">Puja Thali Set</div>
+                    <div class="card-title nepali-text">पूजा थाली सेट</div>
+                </div>
+                <div class="product-image">
+                    <div class="product-image-text english-text">
+                        <div class="text-lg font-bold">Puja Thali Set</div>
+                        <div class="text-sm">Complete Kit</div>
+                    </div>
+                    <div class="product-image-text nepali-text">
+                        <div class="text-lg font-bold">पूजा थाली सेट</div>
+                        <div class="text-sm">पूर्ण किट</div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 english-text">Puja Thali Set</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 nepali-text">पूजा थाली सेट</h3>
+                    <p class="text-gray-600 text-sm mt-1 english-text">Complete Puja Thali kit with all essentials</p>
+                    <p class="text-gray-600 text-sm mt-1 nepali-text">सबै आवश्यक सामाग्री सहित पूर्ण पूजा थाली किट</p>
+                    <div class="flex justify-between items-center mt-3">
+                        <span class="text-orange-500 font-bold text-lg">Rs. 950</span>
+                        <a href="#product4" class="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer id="contact" class="bg-gray-800 text-gray-200 py-12">
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+            <h3 class="font-bold text-xl mb-4">Contact Us</h3>
+            <p>Email: info@codeit.com.np</p>
+            <p>Phone: +977 9862130505</p>
+            <p>Address: Nepal</p>
+        </div>
+        <div>
+            <h3 class="font-bold text-xl mb-4">Quick Links</h3>
+            <ul>
+                <li><a href="#home" class="hover:underline">Home</a></li>
+                <li><a href="#about" class="hover:underline">About</a></li>
+                <li><a href="#products" class="hover:underline">Products</a></li>
+                <li><a href="#contact" class="hover:underline">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="font-bold text-xl mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-orange-500"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="hover:text-orange-500"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="hover:text-orange-500"><i class="fab fa-twitter fa-lg"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Language Toggle
+    const languageBtn = document.getElementById('languageToggle');
+    languageBtn.addEventListener('click', () => {
+        document.body.classList.toggle('language-nepali');
+        languageBtn.textContent = document.body.classList.contains('language-nepali') ? 'ने' : 'EN';
+    });
+</script>
+
+</body>
+</html>
